@@ -1,0 +1,23 @@
+{
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "@app/untils/(.*)": "<rootDir>/../libs/untils/src/$1",
+    "@app/untils": "<rootDir>/../libs/untils/src",
+    "@app/helper/(.*)": "<rootDir>/../libs/helper/src/$1",
+    "@app/helper": "<rootDir>/../libs/helper/src",
+    "@app/graphql/(.*)": "<rootDir>/../libs/graphql/src/$1",
+    "@app/graphql": "<rootDir>/../libs/graphql/src",
+    "@app/mongo-db/(.*)": "<rootDir>/../libs/mongo-db/src/$1",
+    "@app/mongo-db": "<rootDir>/../libs/mongo-db/src"
+  }
+}

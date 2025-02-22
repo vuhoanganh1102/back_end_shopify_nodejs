@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true
+  },
+  "projects": {
+    "untils": {
+      "type": "library",
+      "root": "libs/untils",
+      "entryFile": "index",
+      "sourceRoot": "libs/untils/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/untils/tsconfig.lib.json"
+      }
+    },
+    "helper": {
+      "type": "library",
+      "root": "libs/helper",
+      "entryFile": "index",
+      "sourceRoot": "libs/helper/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/helper/tsconfig.lib.json"
+      }
+    },
+    "graphql": {
+      "type": "library",
+      "root": "libs/graphql",
+      "entryFile": "index",
+      "sourceRoot": "libs/graphql/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/graphql/tsconfig.lib.json"
+      }
+    },
+    "mongo-db": {
+      "type": "library",
+      "root": "libs/mongo-db",
+      "entryFile": "index",
+      "sourceRoot": "libs/mongo-db/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/mongo-db/tsconfig.lib.json"
+      }
+    }
+  }
+}
