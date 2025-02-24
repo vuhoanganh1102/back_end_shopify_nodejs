@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
-import { WebhooksService } from './webhooks.service';
-import { WebhooksController } from './webhooks.controller';
+import { ProductsService } from './products.service';
+import { ProductsController } from './products.controller';
 import { ShopifyModule } from '@app/untils/shopify/shopify.module';
+import { SessionService } from '@app/helper/session.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import {
   SessionShopify,
   SessionShopifySchema,
 } from '@app/mongo-db/session.schema';
-import { SessionService } from '@app/helper/session.service';
 import {
   ShopifySessions,
   ShopifySessionsSchema,
@@ -21,7 +21,7 @@ import {
       { name: ShopifySessions.name, schema: ShopifySessionsSchema },
     ]),
   ],
-  controllers: [WebhooksController],
-  providers: [WebhooksService, SessionService],
+  controllers: [ProductsController],
+  providers: [ProductsService, SessionService],
 })
-export class WebhooksModule {}
+export class ProductsModule {}

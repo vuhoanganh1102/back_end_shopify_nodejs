@@ -8,12 +8,17 @@ import {
   SessionShopify,
   SessionShopifySchema,
 } from '@app/mongo-db/session.schema';
+import {
+  ShopifySessions,
+  ShopifySessionsSchema,
+} from '@app/mongo-db/shopifySessions.schema';
 
 @Module({
   imports: [
     ShopifyModule,
     MongooseModule.forFeature([
       { name: SessionShopify.name, schema: SessionShopifySchema },
+      { name: ShopifySessions.name, schema: ShopifySessionsSchema },
     ]),
   ],
   providers: [HelperService, AuthRedirect, SessionService],

@@ -18,6 +18,8 @@
     "@app/graphql/(.*)": "<rootDir>/../libs/graphql/src/$1",
     "@app/graphql": "<rootDir>/../libs/graphql/src",
     "@app/mongo-db/(.*)": "<rootDir>/../libs/mongo-db/src/$1",
-    "@app/mongo-db": "<rootDir>/../libs/mongo-db/src"
+    "@app/mongo-db": "<rootDir>/../libs/mongo-db/src",
+    "@app/exceptions/(.*)": "<rootDir>/../libs/exceptions/src/$1",
+    "@app/exceptions": "<rootDir>/../libs/exceptions/src"
   }
 }

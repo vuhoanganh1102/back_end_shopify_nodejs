@@ -6,6 +6,7 @@ import {
   SessionShopify,
   SessionShopifySchema,
 } from '@app/mongo-db/session.schema';
+import { ShopifySessions } from '@app/mongo-db/shopifySessions.schema';
 /* Services */
 // import { PrismaService } from '@/utils/prisma.service';
 // import { CryptionService } from '@/utils/cryption.service';
@@ -25,9 +26,16 @@ export class SessionService {
     const checkSession = await this.SessionShopifyModel.findOne({
       id: session.id,
     });
-    if (checkSession) {
-      await this.SessionShopifyModel.updateOne({});
-    }
+
+    const result = await this.SessionShopifyModel.updateOne(
+      { id: session.id },
+      { $set: { updateAt: new Date() } },
+      {
+        upsert: true,
+        new: true,
+      },
+    );
+    return true;
     //
     // upsert({
     //   where: { id: session.id },
@@ -42,55 +50,55 @@ export class SessionService {
     //   },
     // });
 
-    return true;
+    // return true;
   }
 
-  //   async loadSession(id: string): Promise<Session | undefined> {
-  //     const sessionResult = await this.prismaService.sessions.findUnique({
-  //       where: { id },
-  //     });
+  async loadSession(id: string): Promise<any | undefined> {
+    const sessionResult = await this.SessionShopifyModel.findOne({
+      id,
+    });
+    console.log(sessionResult);
+    if (!sessionResult) {
+      return undefined;
+    }
 
-  //     if (!sessionResult) {
-  //       return undefined;
-  //     }
+    // if (sessionResult.content.length > 0) {
+    //   const decryptedContent = this.cryptionService.decrypt(
+    //     sessionResult.content,
+    //   );
+    // const sessionObj = JSON.parse(decryptedContent);
+    return sessionResult;
 
-  //     if (sessionResult.content.length > 0) {
-  //       const decryptedContent = this.cryptionService.decrypt(
-  //         sessionResult.content,
-  //       );
-  //       const sessionObj = JSON.parse(decryptedContent);
-  //       return new Session(sessionObj);
-  //     }
+    // return undefined;
+  }
 
-  //     return undefined;
-  //   }
+  async loadSessionByShop(id: string): Promise<Session | undefined> {
+    const sessionResult = await this.SessionShopifyModel.find({
+      where: { shop: id },
+    });
 
-  //   async loadSessionByShop(id: string): Promise<Session | undefined> {
-  //     const sessionResult = await this.prismaService.sessions.findMany({
-  //       where: { shop: id },
-  //     });
+    if (!sessionResult) {
+      return undefined;
+    }
 
-  //     if (!sessionResult) {
-  //       return undefined;
-  //     }
+    const filteredSessions = sessionResult.filter(
+      (session) => !session.id.includes('offline'),
+    );
 
-  //     const filteredSessions = sessionResult.filter(
-  //       (session) => !session.id.includes('offline'),
-  //     );
+    if (filteredSessions.length > 0) {
+      // const decryptedContent = this.cryptionService.decrypt(
+      //   filteredSessions[0]['content'],
+      // );
+      // const sessionObj = JSON.parse(decryptedContent);
+      // return new Session(sessionObj);
+      return filteredSessions[0]['content'];
+    }
 
-  //     if (filteredSessions.length > 0) {
-  //       const decryptedContent = this.cryptionService.decrypt(
-  //         filteredSessions[0].content,
-  //       );
-  //       const sessionObj = JSON.parse(decryptedContent);
-  //       return new Session(sessionObj);
-  //     }
+    return undefined;
+  }
 
-  //     return undefined;
-  //   }
-
-  //   async deleteSession(id: string): Promise<boolean> {
-  //     await this.prismaService.sessions.deleteMany({ where: { id } });
-  //     return true;
-  //   }
+  async deleteSession(id: string): Promise<boolean> {
+    await this.SessionShopifyModel.deleteMany({ where: { id } });
+    return true;
+  }
 }

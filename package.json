@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^4.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/mongoose": "^11.0.1",
@@ -79,7 +80,8 @@
       "^@app/untils(|/.*)$": "<rootDir>/libs/untils/src/$1",
       "^@app/helper(|/.*)$": "<rootDir>/libs/helper/src/$1",
       "^@app/graphql(|/.*)$": "<rootDir>/libs/graphql/src/$1",
-      "^@app/mongo-db(|/.*)$": "<rootDir>/libs/mongo-db/src/$1"
+      "^@app/mongo-db(|/.*)$": "<rootDir>/libs/mongo-db/src/$1",
+      "^@app/exceptions(|/.*)$": "<rootDir>/libs/exceptions/src/$1"
     }
   }
 }

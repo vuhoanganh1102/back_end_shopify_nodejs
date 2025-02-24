@@ -7,6 +7,9 @@ import { join } from 'path';
 import { HelperModule } from '@app/helper';
 import { WebhooksModule } from './webhooks/webhooks.module';
 import { MongoDbModule } from '@app/mongo-db';
+import { UntilsModule } from '@app/untils';
+import { ProductsModule } from './products/products.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -14,10 +17,14 @@ import { MongoDbModule } from '@app/mongo-db';
       envFilePath: join(__dirname, '../', '.env'),
       isGlobal: true,
     }),
+    AuthModule,
     ShopifyModule,
     HelperModule,
     WebhooksModule,
     MongoDbModule,
+    UntilsModule,
+    ProductsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
