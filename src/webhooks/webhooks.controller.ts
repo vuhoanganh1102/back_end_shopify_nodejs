@@ -49,10 +49,10 @@ export class WebhooksController {
 
   @Post('/product_update')
   async ShopUpdateHandler(@Req() req, @Res() res) {
-    return this.webhooksService.productUpdate;
+    return this.webhooksService.productUpdate(req, res);
   }
   @Post('/api/webhooks/test-22-12/products/create')
   async ShopCreateHandler(@Req() req, @Res() res) {
-    return this.webhooksService.productCreate;
+    return this.webhooksService.productCreate(req, res);
   }
 }

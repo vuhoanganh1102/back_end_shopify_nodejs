@@ -22,7 +22,7 @@ export class AuthService {
   @UseFilters(AuthException)
   async storeOfflineToken(req: any, res: any) {
     const shopifyApiInstance = this.shopifyService.shopifyApi;
-
+    console.log('check123');
     const callbackResponse = await shopifyApiInstance.auth.callback({
       rawRequest: req,
       rawResponse: res,
@@ -32,7 +32,7 @@ export class AuthService {
 
     await this.session.storeSession(session);
 
-    this.shopifyService.shopifyWebhooks;
+    // this.shopifyService.shopifyWebhooks;
 
     const webhookRegisterResponse = await shopifyApiInstance.webhooks.register({
       session,

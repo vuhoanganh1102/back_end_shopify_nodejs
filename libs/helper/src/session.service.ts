@@ -57,7 +57,7 @@ export class SessionService {
     const sessionResult = await this.SessionShopifyModel.findOne({
       id,
     });
-    console.log(sessionResult);
+    // console.log(sessionResult);
     if (!sessionResult) {
       return undefined;
     }
