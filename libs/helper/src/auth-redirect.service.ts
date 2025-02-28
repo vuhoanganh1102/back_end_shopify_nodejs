@@ -24,7 +24,7 @@ export class AuthRedirect {
       return res.redirect(`/exitframe?${queryParams}`);
     }
 
-    return shopifyApi.auth.begin({
+    return await shopifyApi.auth.begin({
       shop: req.query.shop,
       callbackPath: `/auth/offline`,
       isOnline: false,

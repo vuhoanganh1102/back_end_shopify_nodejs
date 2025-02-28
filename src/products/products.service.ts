@@ -6,13 +6,10 @@ import { SessionService } from '@app/helper/session.service';
 
 @Injectable()
 export class ProductsService {
-  private shopify = null;
   constructor(
     private shopifyService: ShopifyService,
     private readonly sessionService: SessionService,
-  ) {
-    this.shopify = shopifyService.shopifyApi;
-  }
+  ) {}
   create(createProductDto: CreateProductDto) {
     return 'This action adds a new product';
   }
@@ -37,14 +34,30 @@ export class ProductsService {
     console.log('check');
     // Lấy session từ Shopify Auth (đừng tạo thủ công)
     const session = await this.sessionService.loadSession(
-      'offline_initalstore.myshopify.com',
+      'offline1_initalstore.myshopify.com',
     );
-    console.log('check1');
-    const client = new this.shopify.clients.Graphql({
+    console.log('check', session);
+    // await this.shopifyService.shopifyApi.auth.begin({
+    //   shop: 'initalstore.myshopify.com',
+    //   callbackPath: '/auth/offline',
+    //   isOnline: false,
+    //   rawRequest: req,
+    //   rawResponse: res,
+    // });
+    // console.log(
+    //   'check1',
+    //   await this.shopifyService.shopifyApi.auth.begin({
+    //     shop: 'initalstore.myshopify.com',
+    //     callbackPath: '/auth/offline',
+    //     isOnline: false,
+    //     rawRequest: undefined,
+    //   }),
+    // );
+    const client = new this.shopifyService.shopifyApi.clients.Graphql({
       /**
        * Paste one or more documents here
        */
-      session,
+      session: session,
     });
     console.log('check2', client);
     const data = await client.query({
@@ -64,6 +77,6 @@ export class ProductsService {
         }
       }`,
     });
-    return data.data;
+    return data;
   }
 }

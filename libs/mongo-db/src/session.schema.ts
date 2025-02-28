@@ -11,6 +11,10 @@ export class SessionShopify {
   //   age: number;
   //   @Prop()
   //   breed: string;
+  @Prop()
+  access_token: string;
+  @Prop()
+  scope: string;
 }
 
 export const SessionShopifySchema =

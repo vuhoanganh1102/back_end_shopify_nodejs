@@ -10,6 +10,7 @@ import { MongoDbModule } from '@app/mongo-db';
 import { UntilsModule } from '@app/untils';
 import { ProductsModule } from './products/products.module';
 import { AuthModule } from './auth/auth.module';
+import { FacebookModule } from '@app/untils/facebook/facebook.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { AuthModule } from './auth/auth.module';
     UntilsModule,
     ProductsModule,
     AuthModule,
+    FacebookModule,
   ],
   controllers: [AppController],
   providers: [AppService],
